@@ -13,5 +13,16 @@
 
 
 var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+	var result = "";
+	// will loop through the first string and will do 3 checks on each character :
+	// 1- to check if the char is not an empty space
+	// 2- to check of the character is included in the second string.
+	// 3- to check if the character is not included in our result string to avoid duplication
+	// if all of the three checks are passed we add that char to the string.
+	for (var i = 0; i < string1.length; i++) {
+		if (string1[i] !== " " && string2.includes(string1[i]) && !result.includes(string1[i])) {
+			result += string1[i];
+		}
+	}
+	return result;
 };
