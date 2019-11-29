@@ -1,10 +1,12 @@
-// Given an array X of positive integers, its elements are to be transformed by running the following operation on them as many times as required:
+// Given an array X of positive integers, its elements are to be transformed by running 
+//the following operation on them as many times as required:
 
 // if X[i] > X[j] then X[i] = X[i] - X[j]
 
 // When no more transformations are possible, return its sum ("smallest possible sum").
 
-// For instance, the successive transformation of the elements of input X = [6, 9, 21] is detailed below:
+// For instance, the successive transformation of the elements of
+// input X = [6, 9, 21] is detailed below:
 
 // X_1 = [6, 9, 12] # -> X_1[2] = X[2] - X[1] = 21 - 9
 // X_2 = [6, 9, 6]  # -> X_2[2] = X_1[2] - X_1[0] = 12 - 6
@@ -27,4 +29,36 @@
 
 // Additional notes:
 
-// There are performance tests consisted of very big numbers and arrays of size at least 30000. Please write an efficient algorithm to prevent timeout.
+// There are performance tests consisted of very big numbers and arrays of size at least 30000. 
+//Please write an efficient algorithm to prevent timeout.
+
+function smallestSub(numbers) {
+	var result = 0;
+	var flag = false;
+	while(!flag){
+		var count = 0;
+		flag = false;
+		for (var i = numbers.length - 1; i >= 0; i--) {
+			console.log(i);
+			for (var j = numbers.length - 1; j >= 0; j--) {
+				if (numbers[i] > numbers[j]) {
+					numbers[i] = numbers[i] - numbers[j]
+				}
+			}
+		}
+		for (var i = numbers.length - 1; i >= 0; i--) {
+			for (var j = numbers.length - 1; j >= 0; j--) {
+				if (numbers[i] > numbers[j]) {
+					count++;
+				}
+			}
+		}
+		if (count <= 0) {
+			for (var i = 0; i < numbers.length; i++) {
+				result += numbers[i];
+			}
+			flag = true;
+		}
+	}
+	return result;
+}
