@@ -14,7 +14,7 @@
  *
  * QUERY: What's the time complexity of your algorithm? If you don't already
  * know, try to intuit this without consulting the Googles.
- *
+ * 							It is O(n^2)
  * Extra credit: Optimization time! During any given pass, if no elements are
  * swapped we can assume the list is sorted and can exit the function early.
  * After this optimization, what is the time complexity of your algorithm?
@@ -31,8 +31,22 @@
 */
 
 // Feel free to add helper functions if needed.
-
-
 var bubbleSort = function(array) {
-  // Your code here.
+	var isNotSoreted = false;
+	var reduce = array.length - 2; // to reduce the iteration each time;
+	for (var j = 0; j < array.length; j++) { // for the number of intertaions
+		for (var i = 0; i <= reduce; i++) {
+			if (array[i] > array[i + 1] && (i + 1 < array.length) ) {
+				var temp = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = temp;
+				isNotSoreted = true;
+			}	
+		}
+		if (!isNotSoreted) {
+			return 'already sorted'
+		}
+		reduce--;		
+	}
+	return array;
 };
