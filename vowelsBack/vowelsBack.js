@@ -2,7 +2,8 @@
 
 // Move consonants forward 9 places through the alphabet. If they pass 'z', start again at 'a'.
 
-// Move vowels back 5 places through the alphabet. If they pass 'a', start again at 'z'. For our Polish friends this kata does not count 'y' as a vowel.
+// Move vowels back 5 places through the alphabet. If they pass 'a', start again at 'z'.
+// For our Polish friends this kata does not count 'y' as a vowel.
 
 // Exceptions:
 
@@ -11,3 +12,66 @@
 // If a moved letter becomes 'c', 'o', 'd' or 'e', revert it back to it's original value.
 
 // Provided string will always be lower case, won't be empty and will have no special characters.
+
+function vowelBack(string) {
+	var vowels = ['a', 'e', 'i', 'o'];
+	var movedLetters = ['c', 'o', 'f', 'e'];
+	var alphabet = 
+	['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	var result = "";
+
+	for (let i = 0; i < string.length; i++) {
+			var originalIndex = alphabet.indexOf(string[i]);
+			if (!vowels.includes(string[i])) {
+				if (string[i] === 'c' || string[i] === 'o') {
+					result += alphabet[alphabet.indexOf(string[i]) - 1];
+				} else if (string[i] === 'd'){
+					result += alphabet[alphabet.indexOf(string[i]) - 3];
+
+				} else if(string[i] === 'e') {
+					result += alphabet[alphabet.indexOf(string[i]) - 4];
+
+				} else {
+					newIndex = alphabet.indexOf(string[i]) + 9;
+					if (newIndex > 25 ) {
+						console.log(newIndex)
+						newIndex = newIndex - 26;
+					}
+					console.log(newIndex)
+					result += alphabet[newIndex];
+				}
+
+			} else {
+				if (string[i] === 'c' || string[i] === 'o') {
+					result += alphabet[alphabet.indexOf(string[i]) - 1];
+				} else if (string[i] === 'd'){
+					result += alphabet[alphabet.indexOf(string[i]) - 3];
+
+				} else if(string[i] === 'e') {
+					result += alphabet[alphabet.indexOf(string[i]) - 4];
+				} else {
+				newIndex = alphabet.indexOf(string[i]) - 5;
+				if (newIndex < 0 ) {
+					console.log(newIndex)
+					newIndex = newIndex + 26;
+				}
+				console.log(newIndex)
+				result += alphabet[newIndex];					
+				}
+			}
+			if (movedLetters.includes(result[i])) {
+				result[i] = alphabet[originalIndex];
+			}
+		}
+
+	return result;
+}
+
+		// if (movedLetters.includes(result[i]) {
+		// 	result[i] = alphabet[original];
+		// }
+
+//vowelBack("testcase"), "tabtbvba")
+// vowelBack("codewars"), "bnaafvab");
+// Test.assertSimilar(vowelBack("exampletesthere"), "agvvyuatabtqaaa");
+// });
