@@ -18,60 +18,49 @@ function vowelBack(string) {
 	var movedLetters = ['c', 'o', 'f', 'e'];
 	var alphabet = 
 	['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-	var result = "";
+	var result = [];
 
 	for (let i = 0; i < string.length; i++) {
 			var originalIndex = alphabet.indexOf(string[i]);
+
 			if (!vowels.includes(string[i])) {
 				if (string[i] === 'c' || string[i] === 'o') {
-					result += alphabet[alphabet.indexOf(string[i]) - 1];
+					result.push(alphabet[alphabet.indexOf(string[i]) - 1]);
 				} else if (string[i] === 'd'){
-					result += alphabet[alphabet.indexOf(string[i]) - 3];
+					result.push(alphabet[alphabet.indexOf(string[i]) - 3]);
 
 				} else if(string[i] === 'e') {
-					result += alphabet[alphabet.indexOf(string[i]) - 4];
+					result.push(alphabet[alphabet.indexOf(string[i]) - 4]);
 
 				} else {
 					newIndex = alphabet.indexOf(string[i]) + 9;
 					if (newIndex > 25 ) {
-						console.log(newIndex)
 						newIndex = newIndex - 26;
 					}
-					console.log(newIndex)
-					result += alphabet[newIndex];
+					result.push(alphabet[newIndex]);
 				}
 
 			} else {
 				if (string[i] === 'c' || string[i] === 'o') {
-					result += alphabet[alphabet.indexOf(string[i]) - 1];
+					result.push(alphabet[alphabet.indexOf(string[i]) - 1]);
 				} else if (string[i] === 'd'){
-					result += alphabet[alphabet.indexOf(string[i]) - 3];
+					result.push(alphabet[alphabet.indexOf(string[i]) - 3]);
 
 				} else if(string[i] === 'e') {
-					result += alphabet[alphabet.indexOf(string[i]) - 4];
+					result.push(alphabet[alphabet.indexOf(string[i]) - 4]);
 				} else {
 				newIndex = alphabet.indexOf(string[i]) - 5;
 				if (newIndex < 0 ) {
-					console.log(newIndex)
 					newIndex = newIndex + 26;
 				}
-				console.log(newIndex)
-				result += alphabet[newIndex];					
+				result.push(alphabet[newIndex]);					
 				}
 			}
 			if (movedLetters.includes(result[i])) {
+
 				result[i] = alphabet[originalIndex];
 			}
 		}
 
-	return result;
+	return result.join('');
 }
-
-		// if (movedLetters.includes(result[i]) {
-		// 	result[i] = alphabet[original];
-		// }
-
-//vowelBack("testcase"), "tabtbvba")
-// vowelBack("codewars"), "bnaafvab");
-// Test.assertSimilar(vowelBack("exampletesthere"), "agvvyuatabtqaaa");
-// });
