@@ -35,10 +35,16 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
+Tree.prototype.DFSelect = function(filterer, resultArray, depth) {
+  depth = depth || 0;
+  resultArray = resultArray || [];
+  for (var i = 0; i < this.children.length; i++) {
+    resultArray.push([this.children[i].value, depth]);
+    this.children[i].DFSelect(filterer, resultArray, ++depth)
+  }
+
+  return resultArray.filter(filterer);
 };
-
-
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.

@@ -26,12 +26,13 @@ x will always be a positive integer, and s will never be empty
 
 var pairOfBears = (x, s) => {
   var result = "";
-
+  var count = 0;
   for (var i = 0; i < s.length; i++) {
     if (s[i] === 'B') {
     	if (s[i+1] === '8') {
     		result += s[i] + s[i+1];
     		i++;
+    		count++;
     	}
     }
 
@@ -39,9 +40,9 @@ var pairOfBears = (x, s) => {
     	if (s[i+1] === 'B') {
     		result += s[i] + s[i+1];
     		i++;
+        	count++;
     	}
     }
   }
-
-  return [result, result.length === x];
-};
+  return [result, count >= x];
+}
