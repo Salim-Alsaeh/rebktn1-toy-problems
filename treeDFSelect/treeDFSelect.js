@@ -34,7 +34,12 @@ var Tree = function(value) {
   this.value = value;
   this.children = [];
 };
-
+//*************************************
+// USE THIS FUNCTION : 
+// root1.DFSelect(([value, depth]) => {
+//    return depth == 1;
+// })
+//*************************************
 Tree.prototype.DFSelect = function(filterer, resultArray, depth) {
   depth = depth || 0;
   resultArray = resultArray || [];
@@ -43,7 +48,9 @@ Tree.prototype.DFSelect = function(filterer, resultArray, depth) {
     this.children[i].DFSelect(filterer, resultArray, ++depth)
   }
 
-  return resultArray.filter(filterer);
+  return resultArray.filter(filterer).map(function(element) {
+    return element[0];
+  });
 };
 
 /**
