@@ -11,5 +11,13 @@
   * don't worry about handling cyclical object structures.
   *
   */
+// first solution
 var deepEquals = function(apple, orange) {
+  return JSON.stringify(apple) === JSON.stringify(orange);
+};
+
+// second solution
+
+var deepEquals2 = function(apple, orange) {
+  
 };
