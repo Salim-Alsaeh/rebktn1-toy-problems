@@ -16,8 +16,21 @@ var deepEquals = function(apple, orange) {
   return JSON.stringify(apple) === JSON.stringify(orange);
 };
 
-// second solution
+var deepEquals2 = function (apple, orange, flag = false, appleKeys = Object.keys(apple),  orangeKeys = Object.keys(orange)) {
 
-var deepEquals2 = function(apple, orange) {
-  
-};
+  if (appleKeys.length !== orangeKeys.length) {
+    return false;
+  }
+ 
+
+  for (let index = 0; index < appleKeys.length; index++) {
+    if (appleKeys[index] === orangeKeys[index]) {
+      if (typeof apple[appleKeys[index]] !== 'object') {
+        flag = apple[appleKeys[index]] === orange[orangeKeys[index]];
+      } else {
+        flag = deepEquals2(apple[appleKeys[index]], orange[orangeKeys[index]], flag)
+      }
+    }
+  }
+  return flag;
+}
