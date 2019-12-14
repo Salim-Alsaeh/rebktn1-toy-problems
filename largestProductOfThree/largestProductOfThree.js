@@ -7,4 +7,10 @@ largestProductOfThree([ 0, 2, 3 ]) //	0
 largestProductOfThree([1, 4, -5, -2]) // 40
 */
 
-function largestProductOfThree(array) {}
+function largestProductOfThree(array) {
+    let l = array.length;
+    array.sort(function(a, b) {
+        return Math.abs(a) - Math.abs(b);
+    });
+    return array[l-1] * array[l-2] * array[l-3];
+}

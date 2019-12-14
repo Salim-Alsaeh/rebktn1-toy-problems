@@ -10,5 +10,14 @@ parseQueryString("http://example.com") // undefined
 */
 
 function parseQueryString(url) {
-    
+    let decodedQueryString = decodeURIComponent(url);
+    if (!url.includes('?')) {
+        return undefined;
+    }
+    let queryArray = decodedQueryString.split('?')[1].split('&');
+    let result = [];
+    queryArray.forEach(function (query) {
+        result.push(query.split('='));
+    });
+    return result;
 }
