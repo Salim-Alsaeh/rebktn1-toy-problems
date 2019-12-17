@@ -33,9 +33,9 @@
 
 'use strict';
 
-var compose = () => {
+var compose = function() {
     console.log(arguments);
-    var argos = [].slice.call(arguments);
+    var argos = Array.prototype.slice.call(arguments);
     console.log(argos);
     return (val) => {
         for (var i = argos.length - 1; i >= 0; i--) {
@@ -47,9 +47,10 @@ var compose = () => {
     }
 };
 
-var pipe = () => {
+var pipe = function() {
     console.log(arguments);
-    var argos = [].slice.call(arguments);
+   // var argos = [].slice.call(arguments);
+    var argos = Array.prototype.slice.call(arguments);
     console.log(argos);
     return (val) => {
         for (var i = 0; i < argos.length; i++) {
