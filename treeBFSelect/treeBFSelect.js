@@ -38,7 +38,7 @@ var Tree = function(value) {
 
 
 Tree.prototype.BFSelect = function(filter, resultArray = []) {
-  if (filter(this.value, 0)) {  
+  if (!!filter(this.value, 0)) {  
     resultArray.push(this.value);
   }
   
@@ -62,8 +62,9 @@ Tree.prototype.BFSelect = function(filter, resultArray = []) {
   return resultArray;
 };
 
-Tree.prototype.DFSelect = function(filter) {
-  var resultArray = [];
+
+Tree.prototype.DFSelect = function(filte, resultArray = []) {
+
   var bfTraverse = function(node, depth) {
     node.depth = depth;
     if (!!filter(node.value, depth)) {
