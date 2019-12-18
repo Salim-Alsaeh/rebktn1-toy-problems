@@ -37,9 +37,52 @@ var Tree = function(value) {
 
 
 
-Tree.prototype.BFSelect = function(filter) {
-  // return an array of values for which the function filter(value, depth) returns true
+Tree.prototype.BFSelect = function(filter, resultArray = []) {
+  if (filter(this.value, 0)) {  
+    resultArray.push(this.value);
+  }
+  
+  var bfTraverse = function(node, depth = 0) {
+    if (node.children) {
+      depth++;
+
+      for (var i = 0; i < node.children.length; i++) {
+        if (filter(node.children[i].value, depth)) {
+          resultArray.push(node.children[i].value);
+        }
+      }
+      
+      for (var j = 0; j < node.children.length; j++) {
+        bfTraverse(node.children[j], depth);
+      }
+    }
+  };
+  
+  bfTraverse(this, 0);
+  return resultArray;
 };
+
+Tree.prototype.DFSelect = function(filter) {
+  var resultArray = [];
+  var bfTraverse = function(node, depth) {
+    node.depth = depth;
+    if (!!filter(node.value, depth)) {
+      resultArray.push(node.value);
+    }
+    if(node.children.length === 0) {
+      return;
+      
+    } else {
+      for(var i = 0; i < node.children.length; i++) {
+
+        bfTraverse(node.children[i], node.depth + 1)
+      }
+    }
+  }
+  bfTraverse(this, 0);
+  return resultArray;
+};
+
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
