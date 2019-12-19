@@ -39,17 +39,48 @@
  */
 
 
-var Range = function(start, end, step) {
+var Range = function(start, end = start + 1, step = 1) {
+    this.start = start;
+    this.end = end;
+    this.step = step;
+    this.rangeSize = 0;
+    this.isNegative = this.step < 0 ? true : false;
+};
+
+Range.prototype.backwarwds = function () {
+    if(!this.start) return null;
+    if ((this.start - this.end) > 0) {
+        this.isNegative = true;
+    }
 };
 
 Range.prototype.size = function () {
+    if(!this.start) return null;
+    this.each();
+    return this.rangeSize;
 };
 
-Range.prototype.each = function (callback) {
+Range.prototype.each = function (callback = () => {}) {
+    if(!this.start) return null;
+    this.backwarwds();
+    this.rangeSize = 0;
+    if (this.isNegative) {
+        for (let index = this.end; index >= this.start; index-= Math.abs(this.step)) {
+            this.rangeSize++;
+            callback(index);
+        }
+    } else {
+        for (let index = this.start; index <= this.end; index+= this.step) {
+            this.rangeSize++;
+            callback(index);
+        }
+    }
 };
 
 Range.prototype.includes = function (val) {
+    if(!this.start) return null;
+
+    return (val >= this.start && val < this.end)
 };
 
 var range = new Range(1);
-
