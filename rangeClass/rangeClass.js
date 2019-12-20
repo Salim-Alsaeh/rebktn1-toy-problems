@@ -79,16 +79,21 @@ Range.prototype.each = function (callback = () => {}) {
 
 Range.prototype.includes = function (val) {
     if(!this.start) return null;
-    if (this.isNegative) {
-        for (let index = this.end; index >= this.start; index-= Math.abs(this.step)) {
-            if(value === index) return true;
-        }
-    } else {
-        for (let index = this.start; index <= this.end; index+= this.step) {
-            if(value === index) return true;
-        }
-    }
-    return false;
+    isMultipleOfStep = ((val - this.start) % this.step);
+
+    return (this.start < this.end) ? ((val >= this.start) && (val <= this.end) && isMultipleOfStep)
+            : ((val <= this.start) && (val >= this.end) && isMultipleOfStep);
+
+    // if (this.isNegative) {
+    //     for (let index = this.end; index >= this.start; index-= Math.abs(this.step)) {
+    //         if(value === index) return true;
+    //     }
+    // } else {
+    //     for (let index = this.start; index <= this.end; index+= this.step) {
+    //         if(value === index) return true;
+    //     }
+    // }
+    // return false;
 };
 
 var range = new Range(1);
