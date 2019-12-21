@@ -9,12 +9,12 @@ isBalanced("") //	true
 */
 
 var isBalanced = function(str) {
-    let countRight = 0;
-    let countLeft = 0;
+    let counter = 0;
 
     for (var i = 0; i < str.length; i++) {
-        if(str[i] === '(' ) countRight++;
-        if(str[i] === ')' ) countLeft++;
+        if(str[i] === ')' ) counter--;
+        if(counter < 0) return false;
+        if(str[i] === '(' ) counter++;
     }
-    return countRight === countLeft;
+    return counter === 0;
 };
