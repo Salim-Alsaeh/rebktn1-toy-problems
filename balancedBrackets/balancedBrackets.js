@@ -38,5 +38,19 @@ var isBalancedwWithType = (type, str) => {
     return counter === 0;
 }
 
-isBalanced("[{()}]")
+///////////////////////////////////////////////////////
+var isBalancedOptimazed = function (str) {
+    var result = [];
+    let typesOfBracks = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    };
+    
+    for (var char of str) {
+        if (types[ch]) result.push(types[ch]);
+        if (ch === result[result.length - 1]) result.pop();
+    }
+    return result.length === 0;
+};
 
