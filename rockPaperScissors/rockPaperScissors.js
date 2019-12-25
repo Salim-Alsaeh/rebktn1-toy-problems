@@ -17,8 +17,18 @@
 * rockPaperScissors(5); // => ['RRRRR', 'RRRRP', 'RRRRS', etc...]
 *
 */
-
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+// its a tree problem
+var rockPaperScissors = function () {
+    var chars = ['R', 'P', 'S'];
+    var result = [];
+    for (var i = 0; i < chars.length; i++) {
+        for (var j = 0; j < chars.length; j++) {
+            for (var k = 0; k < chars.length; k++) {
+                result.push([chars[i] + chars[j] + chars[k]])
+            }
+        }
+    }
+    return result;
 };
+
+rockPaperScissors()
