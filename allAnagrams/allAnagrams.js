@@ -13,5 +13,25 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+
+  var stringArray = string.split('');
+  var result = []
+
+  var generateAnagrams = function(generatedSoFar) {
+    generatedSoFar = generatedSoFar || '';
+
+    if(generatedSoFar.length === string.length) {
+      result.push(generatedSoFar);
+      return;
+    }
+
+    for(var i = 0; i < stringArray.length; i++) {
+      if(!generatedSoFar.includes(stringArray[i])){
+        generateAnagrams(generatedSoFar + stringArray[i])
+      }
+    }
+  }
+
+  generateAnagrams();
+  return result;
 };
