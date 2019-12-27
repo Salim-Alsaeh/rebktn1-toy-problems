@@ -14,27 +14,66 @@
  *  example.min() === 2
  */
 
-/**
-  * Stack Class
-  */
-  var Stack = function() {
+  class Stack {
+    constructor() {
+      this._storage = {};
+      this.stack_size = 0;
+    }
 
-  // add an item to the top of the stack
-    this.push = function(value) {
-    };
+    push(val) {
+      this._storage[this.stack_size] = val;
+      this.stack_size++;
+    }
 
-  // remove an item from the top of the stack
-    this.pop = function() {
-    };
+    pop() {
+      if(this.stack_size === 0) return;
+      this.stack_size--;
 
-  // return the number of items in the stack
-    this.size = function() {
-    };
-  
-  // return the minimum value in the stack
-    this.min = function() {
+      var rem = this._storage[this.stack_size];
+      console.log(rem)
+      delete this._storage[this.stack_size];
+      if(this.stack_size < 0) this.stack_size = 0;
 
-    };
+      return rem;
+    }
 
-  };
+    size() {
+      return this.stack_size;
+    }
+  }
 
+  class MinStack {
+    constructor() {
+      this.min;
+      this.stack = new Stack();
+    }
+    push(value) {
+      if(this.stack.stack_size === 0){
+        this.stack.push(0);
+        this.min = value;
+      } else{
+        this.stack.push(value - this.min);
+        if(value - this.min) {
+          this.min = value;
+        }
+      }
+    }
+
+    getMin() {
+      if(this.stack.stack_size === 0) return "empty stack"
+      return this.min;
+    }
+
+    pop() {
+      if(this.stack.stack_size === 0) return "empty stack"
+      var removed = this.stack.pop();
+      console.log(removed);
+      if(removed < 0) {
+        var temp = this.min;
+        this.min -= removed;
+        return temp;
+      }
+      return removed + this.min;
+    }
+
+  }
