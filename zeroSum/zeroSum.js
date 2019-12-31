@@ -7,3 +7,14 @@ Constraints: Solve this linear time complexity O(n)
 zeroSum([ 1, 3, 2, -3 ]) // true
 zeroSum([ 5, 7, 2, 9 ]) // false
 */
+
+// in order for numbers to equal zero they have to be equal but one of them is negative
+function zeroSum(numbers) {
+  var flag = false;
+  var negativeEqualExists = {}
+  numbers.forEach(e => {
+      if(negativeEqualExists[e]) flag = true;
+      else negativeEqualExists[-e] = 1;
+  });
+  return flag;
+}
