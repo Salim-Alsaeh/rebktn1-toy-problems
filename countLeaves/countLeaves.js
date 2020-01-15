@@ -34,6 +34,22 @@ var Tree = function(value) {
   this.children = [];
 };
 
+Tree.prototype.countLeaves = function() {
+  var count = 0;
+  var tree = this;
+
+  let traverse = (node) => {
+    if(node.children.length === 0) count++;
+    for (var i = 0; i < node.children.length; i++) {
+      traverse(node.children[i])
+    }
+  }
+
+  traverse(tree);
+  return count;
+
+}
+
 /**
  * You shouldn't need to change anything below here, but feel free to look.
  */
