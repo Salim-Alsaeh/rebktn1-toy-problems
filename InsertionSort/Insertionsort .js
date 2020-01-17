@@ -25,4 +25,27 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var insertionSortList = function(head) {};
+var insertionSortList = function(head) {
+    var p = head;
+    while(p.next !== null) {
+        
+        p = p.next;
+    }
+};
+
+class ListNode {
+    constructor(val){
+        this.val = val;
+        this.next = null;
+    }
+}
+
+
+var list = new ListNode(4);
+list.next = new ListNode(2);
+list.next.next = new ListNode(1)
+list.next.next.next = new ListNode(3)
+
+insertionSortList(list)
+
+console.log(list);
