@@ -55,4 +55,23 @@ var numbersToPlace = {
 
 function numberToEnglish(number) {
   // your code here...
+  // var result = '';
+  // let numberStr = number + '';
+  // // checking for edge cases
+  // if(number < 21 || (number < 100 && number % 10 === 0)) return numbersToWords[numberStr];
+  // else if(number % 10 === 0) return numbersToPlace[numberStr];
+  // for (var i = 0; i < numberStr.length; i++) {
+  //   let left = numberStr.substring(i); // all of the numbers except the first one
+  //   if(i % 3 === 2) {
+  //     let str = numberStr.substring(i, i + 2);
+  //     if( parseInt(str) < 21 || parseInt(str) % 10 === 0 ) result += numbersToWords[str] + ' ';
+  //     else result += numbersToWords[str[0] + '0'] + ' ';
+  //   } else if(i % 3 === 1) {
+  //     result += numbersToWords[numberStr[i]] + ' ';
+  //   } else if (i % 3 === 0) {
+  //     result += numbersToPlace[Math.pow(10, i / 3)] || '';
+
+  //   }
+  // }
+  // return result;
 }
