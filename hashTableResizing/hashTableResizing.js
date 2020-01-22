@@ -25,21 +25,54 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
+  result.storage = storage;
   
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+  result.insert = function(k, v) {
+    if(storage.length + 1 >= (storageLimit * 0.75)) result.resize(storageLimit * 2);
+    var newHash = getIndexBelowMaxForKey(k, storageLimit);
+    if(!storage[newHash]) {
+      var newBucket = [];
+      storage[newHash] = newBucket;
+    }
+    if(storage[newHash].length > 0) {
+      for (var i = 0; i < storage[newHash].length; i++) {
+        if(storage[newHash][i][0] === k) storage[newHash][i][1] = v;
+      }
+    }
+    storage[newHash].push([k, v]);
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(k) {
+    var newHash = getIndexBelowMaxForKey(k, storageLimit);
+    for (var i = 0; i < storage[newHash].length; i++) {
+      if(storage[newHash][i][0] === k) return storage[newHash][i][1]
+    }
+    return null;
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(k) {
+    if (Storage.length - 1 <= (storageLimit * 0.25)) result.resize(storageLimit / 2);
+    var newHash = getIndexBelowMaxForKey(k, storageLimit);
+    var res;
+    for (var i = 0; i < storage[newHash].length; i++) {
+      if(storage[newHash][i][0] === k) {
+        result = storage[newHash][i][k];
+        storage[newHash][i][0] = undefined;
+      }
+    }
+    return res;
   };
 
+  result.resize = function(newSize) {
+    var newRes = {};
+    for (var els in result) {
+      for (var i = 0; i < result[els].length; i++) {
+        var k = result[hash][i];
+        newRes.insert(k, newSize)
+      }
+    }
+    result = newRes;
+    return result;
+  }
   return result;
 };
