@@ -65,7 +65,7 @@ var LinkedList = function() {
 var Node = function (val) {
   var obj = {};
   obj.value = val || null;
-  obj.next = null;
+  obj.next = null; 
   return obj;
 }
 var reverseLinkedList = function(linkedList) {
