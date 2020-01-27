@@ -20,13 +20,19 @@ Constraint 2: Do this in constant space
 Constraint 3: Do not mutate the original nodes in any way
 */
 
-function Node(val) {
+var Node = function (val) {
   var obj = {};
   obj.value = val || null;
-  obj.next = null;
+  obj.next = null; 
   return obj;
 }
 
 var hasCycle = function(linkedList) {
-  // your code here...
+  const traversedValues = {};
+  while(linkedList.next) {
+    if(valueChecker[linkedList.value]) return true;
+    else valueChecker[linkedList.value] = true;
+    linkedList = linkedList.next;
+  }
+  return false;
 };
