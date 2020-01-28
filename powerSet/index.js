@@ -18,6 +18,17 @@ powerSet("obama") // [ "", "a", "ab", "abm", "abmo", "abo", "am", "amo", "ao", "
 powerSet("horse") // [ "", "e", "eh", "eho", "ehor", "ehors", "ehos", "ehr", "ehrs", "ehs", "eo", "eor", "eors", "eos", "er", "ers", "es", "h", "ho", "hor", "hors", "hos", "hr", "hrs", "hs", "o", "or", "ors", "os", "r", "rs", "s" ]
 */
 
-function powerSet(string) {
-  // your code here...
+let powerSet = (string) => {
+  let sets = [''];
+  [...string]
+    .sort()             
+    .reduce((stringArr, letter) => !stringArr.includes(letter) ? stringArr.concat(letter) : stringArr, [])
+    .forEach(letter => {
+      console.log('before');
+      console.log(sets);
+      sets.push(...sets.map(currentSet => currentSet + letter))
+      console.log('after');
+      console.log(sets);
+    })                              
+  return sets.sort()
 }
