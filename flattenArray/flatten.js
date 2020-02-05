@@ -9,4 +9,13 @@ flatten([[1, 1], [4], 3, [3], 4, [6, 7]]) // [1, 1, 4, 3, 3, 4, 6, 7]
 
 function flatten(arr) {
   // your code here...
+  var result = [];
+  var recurse = (arr) => {
+    arr.forEach(el => {
+      if(Array.isArray(el)) recurse(el)
+      else result.push(el)
+    });
+  }
+  recurse(arr);
+  return result;
 }
