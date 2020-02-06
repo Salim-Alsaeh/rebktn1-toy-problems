@@ -11,5 +11,9 @@ toMilitary("04:00") // "04:00"
 */
 
 function toMilitary(time) {
-  // your code here...
+  const time = time.slice(':');
+  return time
 }
+
+
+console.log(toMilitary("3:00pm"));
