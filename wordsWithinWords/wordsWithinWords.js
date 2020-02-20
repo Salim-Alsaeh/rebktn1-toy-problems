@@ -8,5 +8,14 @@ nestedWordCount([ "gray", "grays", "ray", "rays", "strays" ]) // 'grays'
 */
 
 function nestedWordCount(words) {
-  // your code here...
+  let storage = {};
+  for (let i = 0; i < words.length; i++) {
+    storage[words[i]] = 0;
+    for (let j = 0; j < words.length; j++) {
+      if(words[i].includes(words[j])) {
+        storage[words[i]]++;
+      }
+    }
+  }
+  return storage;
 }
